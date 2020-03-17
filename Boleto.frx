@@ -1,10 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReportInfo.Created="03/13/2020 16:56:40" ReportInfo.Modified="03/16/2020 16:03:55" ReportInfo.CreatorVersion="2019.2.3.0" PrintSettings.Duplex="Simplex">
+<Report ScriptLanguage="CSharp" ReportInfo.Created="03/13/2020 16:56:40" ReportInfo.Modified="03/17/2020 15:08:41" ReportInfo.CreatorVersion="2019.2.3.0" PrintSettings.Duplex="Simplex">
   <Dictionary>
-    <BusinessObjectDataSource Name="boletoBindingSource" ReferenceName="boletoBindingSource" DataType="BoletoNet.BoletoImpressao.BoletoBancarioReport, Boleto.Net, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null" Enabled="true">
-      <Column Name="Vencimento" DataType="System.String"/>
-      <Column Name="NossoNumero" DataType="System.String"/>
-      <Column Name="NumeroDocumento" DataType="System.String"/>
+    <BusinessObjectDataSource Name="Boleto" ReferenceName="Boleto" DataType="System.Collections.Generic.List`1[[BoletoNet.BoletoImpressao.BoletoBancarioReport, Boleto.Net, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null]]" Enabled="true">
       <Column Name="LinhaDigitavel" DataType="System.String"/>
       <Column Name="CodigoBarra" DataType="System.Byte[]" BindableControl="Picture"/>
       <Column Name="BancoImagem" DataType="System.Byte[]" BindableControl="Picture"/>
@@ -13,6 +10,8 @@
       <Column Name="BeneficiarioCpfCnpj" DataType="System.String"/>
       <Column Name="BeneficiarioEnderecoCompleto" DataType="System.String"/>
       <Column Name="AgenciaCodigoCedente" DataType="System.String"/>
+      <Column Name="Vencimento" DataType="System.String"/>
+      <Column Name="NumeroDocumento" DataType="System.String"/>
       <Column Name="CarteiraNossoNumero" DataType="System.String"/>
       <Column Name="Especie" DataType="System.String"/>
       <Column Name="ValorDocumento" DataType="System.String"/>
@@ -36,6 +35,7 @@
       <Column Name="EspecieDocumento" DataType="System.String"/>
       <Column Name="Aceite" DataType="System.String"/>
       <Column Name="Carteira" DataType="System.String"/>
+      <Column Name="NossoNumero" DataType="System.String"/>
     </BusinessObjectDataSource>
   </Dictionary>
   <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
@@ -46,7 +46,7 @@
       <TextObject Name="Text3" Left="647.6" Top="37.8" Width="75.6" Height="9.45" Text="Comprovante de entrega" HorzAlign="Center" VertAlign="Center" Font="Arial, 3.75pt, style=Bold"/>
       <ShapeObject Name="Shape4" Left="-9450" Top="-9450" Width="94.5" Height="18.9" Border.Style="Dot"/>
     </ReportTitleBand>
-    <DataBand Name="Data1" Top="49.92" Width="718.2" Height="992.25" DataSource="boletoBindingSource">
+    <DataBand Name="Data1" Top="50.45" Width="718.2" Height="992.25">
       <ShapeObject Name="Shape2" Top="38.25" Width="720.2" Height="105.84" Border.Width="1.5"/>
       <LineObject Name="Line3" Left="171.1" Top="10.45" Height="28.35" Border.Width="1.5"/>
       <LineObject Name="Line4" Left="240.55" Top="10.45" Height="28.35" Border.Width="1.5"/>
@@ -172,65 +172,65 @@
       <TextObject Name="Text71" Left="10" Top="898.75" Width="57.15" Height="7.9" Text="Pagador / Avalista" Font="Arial, 4.5pt"/>
       <TextObject Name="Text72" Left="571.4" Top="897.75" Width="74.05" Height="7.9" Text="Autenticação mecânica -" Font="Arial, 4.5pt"/>
       <TextObject Name="Text73" Left="638.5" Top="897.75" Width="87.05" Height="7.9" Text="Ficha de Compensação" Font="Arial, 5.25pt, style=Bold"/>
-      <TextObject Name="Text74" Left="2.45" Top="48.25" Width="363.1" Height="14.9" Text="[boletoBindingSource.BeneficiarioNome]" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text75" Left="2.45" Top="302.4" Width="327.3" Height="14.9" Text="[boletoBindingSource.BeneficiarioNome]" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text76" Left="2.45" Top="642.6" Width="479.5" Height="14.9" Text="[boletoBindingSource.BeneficiarioNome]" Font="Arial, 8pt, style=Bold"/>
-      <TextObject Name="Text77" Left="2.45" Top="74.6" Width="363.1" Height="14.9" Text="[boletoBindingSource.PagadorNome]" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text78" Left="2.45" Top="100.95" Width="589.9" Height="14.9" Text="[boletoBindingSource.LocalPagamento]" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text79" Left="367.45" Top="49.25" Width="111.95" Height="14.9" Text="[boletoBindingSource.AgenciaCodigoCedente]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text80" Left="367.55" Top="75.6" Width="111.95" Height="14.9" Text="[boletoBindingSource.CarteiraNossoNumero]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text81" Left="482.4" Top="48.25" Width="110.95" Height="14.9" Text="[boletoBindingSource.Vencimento]" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text82" Left="481.95" Top="74.6" Width="111.95" Height="14.9" Text="[boletoBindingSource.Especie]" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text83" Left="595.35" Top="49.25" Width="121.95" Height="14.9" Text="[boletoBindingSource.NumeroDocumento]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <PictureObject Name="Picture4" Width="158.76" Height="37.8" DataColumn="boletoBindingSource.BancoImagem"/>
-      <PictureObject Name="Picture5" Top="254.02" Width="158.76" Height="37.8" DataColumn="boletoBindingSource.BancoImagem"/>
-      <PictureObject Name="Picture6" Top="565.11" Width="158.76" Height="37.8" DataColumn="boletoBindingSource.BancoImagem"/>
-      <TextObject Name="Text84" Left="595.35" Top="74.6" Width="121.95" Height="14.9" Text="[boletoBindingSource.ValorDocumento]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text85" Left="595.35" Top="100.95" Width="121.95" Height="14.9" Text="[boletoBindingSource.DataProcessamento]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text86" Left="330.75" Top="303.4" Width="111.95" Height="14.9" Text="[boletoBindingSource.AgenciaCodigoCedente]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text87" Left="445.15" Top="303.4" Width="36.35" Height="14.9" Text="[boletoBindingSource.Especie]" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text88" Left="485.4" Top="303.4" Width="69.7" Height="14.9" Text="[boletoBindingSource.Quantidade]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text89" Left="558.55" Top="303.4" Width="159.2" Height="14.9" Text="[boletoBindingSource.CarteiraNossoNumero]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text90" Left="2.65" Top="329.75" Width="219.45" Height="14.9" Text="[boletoBindingSource.NumeroDocumento]" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text91" Left="224.8" Top="329.75" Width="125.4" Height="14.9" Text="[boletoBindingSource.BeneficiarioCpfCnpj]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text92" Left="353.65" Top="329.75" Width="128.85" Height="14.9" Text="[boletoBindingSource.Vencimento]" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text93" Left="484.95" Top="329.75" Width="232.9" Height="14.9" Text="[boletoBindingSource.ValorDocumento]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text94" Left="484.95" Top="358.1" Width="232.9" Height="14.9" Text="[boletoBindingSource.ValorCobrado]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text95" Left="362.55" Top="357.1" Width="119.5" Height="14.9" Text="[boletoBindingSource.OutrosAcrescimos]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text96" Left="243.7" Top="357.1" Width="115.5" Height="13.9" Text="[boletoBindingSource.MoraMulta]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text97" Left="122.85" Top="357.1" Width="118.5" Height="13.9" Text="[boletoBindingSource.OutrasDeducoes]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text98" Left="3" Top="356.65" Width="116.5" Height="13.9" Text="[boletoBindingSource.DescontoAbatimentos]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text99" Left="3" Top="383.45" Width="713.75" Height="14.9" Text="[boletoBindingSource.PagadorNome] - CPF/CNPJ: [boletoBindingSource.PagadorCpfCnpj]" Font="Arial, 7pt, style=Bold"/>
-      <TextObject Name="Text100" Left="3" Top="398.9" Width="713.75" Height="14.9" Text="[boletoBindingSource.PagadorEndereco]" Font="Arial, 7pt, style=Bold"/>
-      <TextObject Name="Text101" Left="3" Top="414.35" Width="713.75" Height="14.9" Text="[boletoBindingSource.PagadorBairro] - [boletoBindingSource.PagadorCidade] - CEP: [boletoBindingSource.PagadorCep]" Font="Arial, 7pt, style=Bold"/>
-      <TextObject Name="Text102" Left="3" Top="440.15" Width="477.5" Height="99.95" Text="[boletoBindingSource.Instrucao]" Font="Arial, 7pt, style=Bold"/>
-      <TextObject Name="Text103" Left="172.1" Top="12.45" Width="67.15" Height="24.35" Text="[boletoBindingSource.BancoCodigoDigito]" HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
-      <TextObject Name="Text104" Left="3" Top="614.25" Width="479.5" Height="14.9" Text="[boletoBindingSource.LocalPagamento]" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text105" Left="3" Top="661.5" Width="479.5" Height="14.9" Text="[boletoBindingSource.BeneficiarioEnderecoCompleto]" Font="Arial, 8pt, style=Bold"/>
-      <TextObject Name="Text106" Left="2.55" Top="695.85" Width="125.95" Height="13.9" Text="[boletoBindingSource.DataDocumento]" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text107" Left="132.3" Top="695.85" Width="142.85" Height="13.9" Text="[boletoBindingSource.NumeroDocumento]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text108" Left="277.5" Top="696.3" Width="72.7" Height="13.9" Text="[boletoBindingSource.EspecieDocumento]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text109" Left="353.1" Top="696.85" Width="34.7" Height="12.9" Text="[boletoBindingSource.Aceite]" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text110" Left="391.45" Top="694.85" Width="92.6" Height="13.9" Text="[boletoBindingSource.DataProcessamento]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text111" Left="132.3" Top="722.2" Width="72.25" Height="13.9" Text="[boletoBindingSource.Carteira]" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text112" Left="206.9" Top="722.2" Width="54.35" Height="13.9" Text="[boletoBindingSource.Especie]" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text113" Left="264.6" Top="722.2" Width="123.5" Height="13.9" Text="[boletoBindingSource.Quantidade]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <PictureObject Name="Picture1" Left="2.45" Top="916.65" Width="415.8" Height="47.25" DataColumn="boletoBindingSource.CodigoBarra"/>
-      <TextObject Name="Text114" Left="1" Top="748.55" Width="477.5" Height="90.5" Text="[boletoBindingSource.Instrucao]" Font="Arial, 7pt, style=Bold"/>
-      <TextObject Name="Text115" Left="172.1" Top="264.6" Width="67.15" Height="24.35" Text="[boletoBindingSource.BancoCodigoDigito]" HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
-      <TextObject Name="Text116" Left="172.1" Top="576.45" Width="66.15" Height="24.35" Text="[boletoBindingSource.BancoCodigoDigito]" HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
-      <TextObject Name="Text117" Left="485.4" Top="614.25" Width="231.35" Height="13.9" Text="[boletoBindingSource.Vencimento]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text118" Left="485.4" Top="642.6" Width="231.35" Height="13.9" Text="[boletoBindingSource.AgenciaCodigoCedente]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text119" Left="485.4" Top="669.95" Width="231.35" Height="13.9" Text="[boletoBindingSource.NossoNumero]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text120" Left="485.4" Top="694.85" Width="231.35" Height="13.9" Text="[boletoBindingSource.ValorDocumento]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text121" Left="485.4" Top="721.2" Width="231.35" Height="13.9" Text="[boletoBindingSource.DescontoAbatimentos]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text122" Left="485.4" Top="747.55" Width="231.35" Height="13.9" Text="[boletoBindingSource.Vencimento]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text123" Left="485.4" Top="774.9" Width="231.35" Height="13.9" Text="[boletoBindingSource.MoraMulta]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text124" Left="485.4" Top="800.25" Width="231.35" Height="13.9" Text="[boletoBindingSource.OutrosAcrescimos]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text125" Left="486.4" Top="827.6" Width="139.85" Height="13.9" Text="[boletoBindingSource.ValorCobrado]" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text126" Left="5.9" Top="856.95" Width="713.75" Height="9.9" Text="[boletoBindingSource.PagadorNome] - CPF/CNPJ: [boletoBindingSource.PagadorCpfCnpj]" Font="Arial, 6pt, style=Bold"/>
-      <TextObject Name="Text127" Left="5.9" Top="868.85" Width="713.75" Height="9.9" Text="[boletoBindingSource.PagadorEndereco]" Font="Arial, 6pt, style=Bold"/>
-      <TextObject Name="Text128" Left="5.9" Top="880.76" Width="486.95" Height="9.9" Text="[boletoBindingSource.PagadorBairro] - [boletoBindingSource.PagadorCidade] - CEP: [boletoBindingSource.PagadorCep]" Font="Arial, 6pt, style=Bold"/>
+      <TextObject Name="Text74" Left="2.45" Top="48.25" Width="363.1" Height="14.9" Text="[Boleto.BeneficiarioNome]" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text75" Left="2.45" Top="302.4" Width="327.3" Height="14.9" Text="[Boleto.BeneficiarioNome]" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text76" Left="2.45" Top="642.6" Width="479.5" Height="14.9" Text="[Boleto.BeneficiarioNome]" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text77" Left="2.45" Top="74.6" Width="363.1" Height="14.9" Text="[Boleto.PagadorNome]" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text78" Left="2.45" Top="100.95" Width="589.9" Height="14.9" Text="[Boleto.LocalPagamento]" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text79" Left="367.45" Top="49.25" Width="111.95" Height="14.9" Text="[Boleto.AgenciaCodigoCedente]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text80" Left="367.55" Top="75.6" Width="111.95" Height="14.9" Text="[Boleto.CarteiraNossoNumero]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text81" Left="482.4" Top="48.25" Width="110.95" Height="14.9" Text="[Boleto.Vencimento]" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text82" Left="481.95" Top="74.6" Width="111.95" Height="14.9" Text="[Boleto.Especie]" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text83" Left="595.35" Top="49.25" Width="121.95" Height="14.9" Text="[Boleto.NumeroDocumento]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <PictureObject Name="Picture4" Width="158.76" Height="37.8" DataColumn="Boleto.BancoImagem"/>
+      <PictureObject Name="Picture5" Top="254.02" Width="158.76" Height="37.8" DataColumn="Boleto.BancoImagem"/>
+      <PictureObject Name="Picture6" Top="565.11" Width="158.76" Height="37.8" DataColumn="Boleto.BancoImagem"/>
+      <TextObject Name="Text84" Left="595.35" Top="74.6" Width="121.95" Height="14.9" Text="[Boleto.ValorDocumento]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text85" Left="595.35" Top="100.95" Width="121.95" Height="14.9" Text="[Boleto.DataProcessamento]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text86" Left="330.75" Top="303.4" Width="111.95" Height="14.9" Text="[Boleto.AgenciaCodigoCedente]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text87" Left="445.15" Top="303.4" Width="36.35" Height="14.9" Text="[Boleto.Especie]" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text88" Left="485.4" Top="303.4" Width="69.7" Height="14.9" Text="[Boleto.Quantidade]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text89" Left="558.55" Top="303.4" Width="159.2" Height="14.9" Text="[Boleto.CarteiraNossoNumero]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text90" Left="2.65" Top="329.75" Width="219.45" Height="14.9" Text="[Boleto.NumeroDocumento]" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text91" Left="224.8" Top="329.75" Width="125.4" Height="14.9" Text="[Boleto.BeneficiarioCpfCnpj]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text92" Left="353.65" Top="329.75" Width="128.85" Height="14.9" Text="[Boleto.Vencimento]" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text93" Left="484.95" Top="329.75" Width="232.9" Height="14.9" Text="[Boleto.ValorDocumento]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text94" Left="484.95" Top="358.1" Width="232.9" Height="14.9" Text="[Boleto.ValorCobrado]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text95" Left="362.55" Top="357.1" Width="119.5" Height="14.9" Text="[Boleto.OutrosAcrescimos]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text96" Left="243.7" Top="357.1" Width="115.5" Height="13.9" Text="[Boleto.MoraMulta]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text97" Left="122.85" Top="357.1" Width="118.5" Height="13.9" Text="[Boleto.OutrasDeducoes]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text98" Left="3" Top="356.65" Width="116.5" Height="13.9" Text="[Boleto.DescontoAbatimentos]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text99" Left="3" Top="383.45" Width="713.75" Height="14.9" Text="[Boleto.PagadorNome] - CPF/CNPJ: [Boleto.PagadorCpfCnpj]" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text100" Left="3" Top="398.9" Width="713.75" Height="14.9" Text="[Boleto.PagadorEndereco]" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text101" Left="3" Top="414.35" Width="713.75" Height="14.9" Text="[Boleto.PagadorBairro] - [Boleto.PagadorCidade] - CEP: [Boleto.PagadorCep]" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text102" Left="3" Top="440.15" Width="477.5" Height="99.95" Text="[Boleto.Instrucao]" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text103" Left="172.1" Top="12.45" Width="67.15" Height="24.35" Text="[Boleto.BancoCodigoDigito]" HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text104" Left="3" Top="614.25" Width="479.5" Height="14.9" Text="[Boleto.LocalPagamento]" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text105" Left="3" Top="661.5" Width="479.5" Height="14.9" Text="[Boleto.BeneficiarioEnderecoCompleto]" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text106" Left="2.55" Top="695.85" Width="125.95" Height="13.9" Text="[Boleto.DataDocumento]" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text107" Left="132.3" Top="695.85" Width="142.85" Height="13.9" Text="[Boleto.NumeroDocumento]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text108" Left="277.5" Top="696.3" Width="72.7" Height="13.9" Text="[Boleto.EspecieDocumento]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text109" Left="353.1" Top="696.85" Width="34.7" Height="12.9" Text="[Boleto.Aceite]" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text110" Left="391.45" Top="694.85" Width="92.6" Height="13.9" Text="[Boleto.DataProcessamento]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text111" Left="132.3" Top="722.2" Width="72.25" Height="13.9" Text="[Boleto.Carteira]" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text112" Left="206.9" Top="722.2" Width="54.35" Height="13.9" Text="[Boleto.Especie]" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text113" Left="264.6" Top="722.2" Width="123.5" Height="13.9" Text="[Boleto.Quantidade]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <PictureObject Name="Picture1" Left="2.45" Top="916.65" Width="415.8" Height="47.25" DataColumn="Boleto.CodigoBarra"/>
+      <TextObject Name="Text114" Left="1" Top="748.55" Width="477.5" Height="90.5" Text="[Boleto.Instrucao]" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text115" Left="172.1" Top="264.6" Width="67.15" Height="24.35" Text="[Boleto.BancoCodigoDigito]" HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text116" Left="172.1" Top="576.45" Width="66.15" Height="24.35" Text="[Boleto.BancoCodigoDigito]" HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text117" Left="485.4" Top="614.25" Width="231.35" Height="13.9" Text="[Boleto.Vencimento]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text118" Left="485.4" Top="642.6" Width="231.35" Height="13.9" Text="[Boleto.AgenciaCodigoCedente]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text119" Left="485.4" Top="669.95" Width="231.35" Height="13.9" Text="[Boleto.NossoNumero]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text120" Left="485.4" Top="694.85" Width="231.35" Height="13.9" Text="[Boleto.ValorDocumento]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text121" Left="485.4" Top="721.2" Width="231.35" Height="13.9" Text="[Boleto.DescontoAbatimentos]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text122" Left="485.4" Top="747.55" Width="231.35" Height="13.9" Text="[Boleto.Vencimento]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text123" Left="485.4" Top="774.9" Width="231.35" Height="13.9" Text="[Boleto.MoraMulta]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text124" Left="485.4" Top="800.25" Width="231.35" Height="13.9" Text="[Boleto.OutrosAcrescimos]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text125" Left="486.4" Top="827.6" Width="139.85" Height="13.9" Text="[Boleto.ValorCobrado]" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text126" Left="5.9" Top="856.95" Width="713.75" Height="9.9" Text="[Boleto.PagadorNome] - CPF/CNPJ: [Boleto.PagadorCpfCnpj]" Font="Arial, 6pt, style=Bold"/>
+      <TextObject Name="Text127" Left="5.9" Top="868.85" Width="713.75" Height="9.9" Text="[Boleto.PagadorEndereco]" Font="Arial, 6pt, style=Bold"/>
+      <TextObject Name="Text128" Left="5.9" Top="880.76" Width="486.95" Height="9.9" Text="[Boleto.PagadorBairro] - [Boleto.PagadorCidade] - CEP: [Boleto.PagadorCep]" Font="Arial, 6pt, style=Bold"/>
     </DataBand>
   </ReportPage>
 </Report>
