@@ -1,7 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReportInfo.Created="03/13/2020 16:56:40" ReportInfo.Modified="03/17/2020 15:08:41" ReportInfo.CreatorVersion="2019.2.3.0" PrintSettings.Duplex="Simplex">
+<Report ScriptLanguage="CSharp" ReportInfo.Created="03/13/2020 16:56:40" ReportInfo.Modified="03/21/2020 13:31:38" ReportInfo.CreatorVersion="2019.2.3.0" PrintSettings.Duplex="Simplex">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+
+    private void Page1_StartPage(object sender, EventArgs e)
+    {
+      bool MostrarGuiaEntrega = (Boolean)Report.GetParameterValue(&quot;MostrarGuiaEntrega&quot;);
+      GuiaEntrega.Visible = true;
+    }
+  }
+}
+</ScriptText>
   <Dictionary>
-    <BusinessObjectDataSource Name="Boleto" ReferenceName="Boleto" DataType="System.Collections.Generic.List`1[[BoletoNet.BoletoImpressao.BoletoBancarioReport, Boleto.Net, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null]]" Enabled="true">
+    <BusinessObjectDataSource Name="Boletos" ReferenceName="Boletos" DataType="null" Enabled="true">
       <Column Name="LinhaDigitavel" DataType="System.String"/>
       <Column Name="CodigoBarra" DataType="System.Byte[]" BindableControl="Picture"/>
       <Column Name="BancoImagem" DataType="System.Byte[]" BindableControl="Picture"/>
@@ -37,200 +64,209 @@
       <Column Name="Carteira" DataType="System.String"/>
       <Column Name="NossoNumero" DataType="System.String"/>
     </BusinessObjectDataSource>
+    <Parameter Name="MostrarGuiaEntrega" DataType="System.Boolean"/>
   </Dictionary>
-  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
-    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="47.25">
-      <TextObject Name="Text1" Left="307.12" Width="103.95" Height="9.45" Text="Instruções de Impressão&#13;" Font="Arial, 6pt, style=Bold"/>
+  <ReportPage Name="Boleto" Watermark.Font="Arial, 60pt" StartPageEvent="Page1_StartPage">
+    <PageHeaderBand Name="PageHeader1" Width="718.2" Height="34.8">
       <TextObject Name="Text2" Left="189" Top="9.45" Width="340.2" Height="18.9" Text="Imprimir em impressora jato de tinta(Ink Jet) ou laser em qualidade normal. (Não use modo econômico)&#13;&#10;Utilize folha A4 (210 x 297 mm) - Corte na linha indicada" HorzAlign="Center" Font="Arial, 5.25pt"/>
-      <LineObject Name="Line1" Top="37.8" Width="718.2" Border.Style="Dash"/>
-      <TextObject Name="Text3" Left="647.6" Top="37.8" Width="75.6" Height="9.45" Text="Comprovante de entrega" HorzAlign="Center" VertAlign="Center" Font="Arial, 3.75pt, style=Bold"/>
-      <ShapeObject Name="Shape4" Left="-9450" Top="-9450" Width="94.5" Height="18.9" Border.Style="Dot"/>
-    </ReportTitleBand>
-    <DataBand Name="Data1" Top="50.45" Width="718.2" Height="992.25">
-      <ShapeObject Name="Shape2" Top="38.25" Width="720.2" Height="105.84" Border.Width="1.5"/>
-      <LineObject Name="Line3" Left="171.1" Top="10.45" Height="28.35" Border.Width="1.5"/>
-      <LineObject Name="Line4" Left="240.55" Top="10.45" Height="28.35" Border.Width="1.5"/>
-      <LineObject Name="Line5" Left="1" Top="64.6" Width="717.75" Border.Width="1.5"/>
-      <LineObject Name="Line6" Top="90.5" Width="718.75" Border.Width="1.5"/>
-      <LineObject Name="Line7" Left="1" Top="116.95" Width="718.3" Border.Width="1.5"/>
-      <LineObject Name="Line8" Left="594.35" Top="38.8" Height="26.46" Border.Width="1.5"/>
-      <LineObject Name="Line9" Left="480.85" Top="38.8" Height="26.46" Border.Width="1.5"/>
-      <LineObject Name="Line10" Left="366.55" Top="38.8" Height="26.46" Border.Width="1.5"/>
-      <LineObject Name="Line11" Left="594.35" Top="63.7" Height="26.46" Border.Width="1.5"/>
-      <LineObject Name="Line12" Left="480.85" Top="63.7" Height="26.46" Border.Width="1.5"/>
-      <LineObject Name="Line13" Left="366.55" Top="63.7" Height="26.46" Border.Width="1.5"/>
-      <LineObject Name="Line14" Left="594.35" Top="90.5" Height="26.46" Border.Width="1.5"/>
-      <LineObject Name="Line15" Left="594.45" Top="116.4" Height="26.46" Border.Width="1.5"/>
-      <LineObject Name="Line16" Left="480.95" Top="116.4" Height="26.46" Border.Width="1.5"/>
-      <LineObject Name="Line17" Left="274.05" Top="116.4" Height="26.46" Border.Width="1.5"/>
-      <LineObject Name="Line18" Left="151.2" Top="116.4" Height="26.46" Border.Width="1.5"/>
-      <TextObject Name="Text4" Left="2.45" Top="40.8" Width="39.25" Height="7.9" Text="Beneficiário" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text5" Left="2.45" Top="66.15" Width="29.8" Height="7.9" Text="Pagador" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text6" Left="2.45" Top="92.5" Width="62.6" Height="7.9" Text="Local de pagamento" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text7" Left="2.45" Top="118.85" Width="75.5" Height="7.9" Text="Recebi(emos) o bloqueio" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text8" Left="367.55" Top="40.8" Width="86.95" Height="7.9" Text="Agência / Código do Cedente" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text9" Left="481.95" Top="40.8" Width="39.25" Height="7.9" Text="Vencimento" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text10" Left="481.95" Top="66.15" Width="28.8" Height="7.9" Text="Espécie" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text11" Left="368.55" Top="66.15" Width="75.05" Height="7.9" Text="Carteira / Nosso Número" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text12" Left="595.35" Top="40.8" Width="69.05" Height="7.9" Text="Número do documento" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text13" Left="595.35" Top="66.15" Width="61.6" Height="7.9" Text="Valor do documento" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text14" Left="595.35" Top="92.5" Width="72.05" Height="7.9" Text="Data do processamento" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text15" Left="151.2" Top="118.85" Width="19.35" Height="7.9" Text="Data" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text16" Left="481.95" Top="118.85" Width="19.35" Height="7.9" Text="Data" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text17" Left="274.05" Top="118.85" Width="35.25" Height="7.9" Text="Assinatura" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text18" Left="595.35" Top="118.85" Width="37.25" Height="7.9" Text="Entregador" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text19" Left="6" Top="144.75" Width="167.55" Height="7.9" Text="Motivo de não entrega (para uso da empresa entregadora)" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text20" Left="78.6" Top="170.1" Width="68.15" Height="9.9" Text="(  ) Mudou-se" HorzAlign="Center" VertAlign="Center" Font="Arial, 6.5pt, style=Bold"/>
-      <TextObject Name="Text21" Left="78.6" Top="189" Width="85.5" Height="9.9" Text="(  ) Desconhecido" HorzAlign="Center" VertAlign="Center" Font="Arial, 6.5pt, style=Bold"/>
-      <TextObject Name="Text22" Left="189" Top="170.1" Width="139.75" Height="9.9" Text="(  ) Não existe número indicado" HorzAlign="Center" VertAlign="Center" Font="Arial, 6.5pt, style=Bold"/>
-      <TextObject Name="Text23" Left="189.45" Top="189" Width="112.3" Height="9.9" Text="(  ) Endereço inexistente" HorzAlign="Center" VertAlign="Center" Font="Arial, 6.5pt, style=Bold"/>
-      <TextObject Name="Text24" Left="363" Top="189" Width="68.6" Height="9.9" Text="(  ) Recusado" HorzAlign="Center" VertAlign="Center" Font="Arial, 6.5pt, style=Bold"/>
-      <TextObject Name="Text25" Left="362.75" Top="170.55" Width="126.2" Height="9.9" Text="(  ) Outros (anotar no verso)" HorzAlign="Center" VertAlign="Center" Font="Arial, 6.5pt, style=Bold"/>
-      <TextObject Name="Text26" Left="532.2" Top="170.1" Width="87.95" Height="9.9" Text="(  ) Não procurado" HorzAlign="Center" VertAlign="Center" Font="Arial, 6.5pt, style=Bold"/>
-      <LineObject Name="Line19" Top="222.35" Width="718.2" Border.Style="Dash"/>
-      <ShapeObject Name="Shape5" Top="292.4" Width="720.2" Height="136.08" Border.Width="1.5"/>
-      <LineObject Name="Line20" Left="171.1" Top="264.6" Height="28.35" Border.Width="1.5"/>
-      <LineObject Name="Line21" Left="240.55" Top="264.6" Height="28.35" Border.Width="1.5"/>
-      <TextObject Name="Text27" Left="614.25" Top="28.35" Width="104.4" Height="9.45" Text="Comprovante de entrega" HorzAlign="Center" VertAlign="Center" Font="Arial, 6pt, style=Bold"/>
-      <LineObject Name="Line22" Left="1" Top="319.3" Width="717.75" Border.Width="1.5"/>
-      <LineObject Name="Line23" Top="346.2" Width="718.75" Border.Width="1.5"/>
-      <LineObject Name="Line24" Left="1" Top="372.65" Width="718.3" Border.Width="1.5"/>
-      <LineObject Name="Line25" Left="556.55" Top="292.95" Height="26.46" Border.Width="1.5"/>
-      <LineObject Name="Line26" Left="483.4" Top="292.95" Height="26.46" Border.Width="1.5"/>
-      <LineObject Name="Line27" Left="443.15" Top="292.95" Height="26.46" Border.Width="1.5"/>
-      <LineObject Name="Line28" Left="329.75" Top="292.95" Height="26.46" Border.Width="1.5"/>
-      <LineObject Name="Line29" Left="483.46" Top="319.3" Height="26.46" Border.Width="1.5"/>
-      <LineObject Name="Line30" Left="351.65" Top="319.3" Height="26.46" Border.Width="1.5"/>
-      <LineObject Name="Line31" Left="222.8" Top="319.3" Height="26.46" Border.Width="1.5"/>
-      <LineObject Name="Line32" Left="483.46" Top="346.65" Height="26.46" Border.Width="1.5"/>
-      <LineObject Name="Line33" Left="361.1" Top="346.65" Height="26.46" Border.Width="1.5"/>
-      <LineObject Name="Line34" Left="242.7" Top="346.65" Height="26.46" Border.Width="1.5"/>
-      <LineObject Name="Line35" Left="120.85" Top="346.65" Height="26.46" Border.Width="1.5"/>
-      <TextObject Name="Text28" Left="2.45" Top="294.95" Width="39.25" Height="7.9" Text="Beneficiário" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text29" Left="2.45" Top="321.3" Width="69.6" Height="7.9" Text="Número do documento" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text30" Left="2.45" Top="348.65" Width="79.6" Height="7.9" Text="(-) Desconto / Abatimentos" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text31" Left="2.45" Top="376" Width="29.8" Height="7.9" Text="Pagador" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text32" Left="122.85" Top="348.65" Width="61.6" Height="7.9" Text="(-) Outras deduções" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text33" Left="244.7" Top="348.65" Width="69.6" Height="7.9" Text="(+) Mora / Multa" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text34" Left="224.8" Top="321.3" Width="40.25" Height="7.9" Text="CPF / CNPJ" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text35" Left="331.75" Top="294.95" Width="96.5" Height="7.9" Text="Agência / Código do Beneficiário" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text36" Left="445.15" Top="294.95" Width="28.8" Height="7.9" Text="Espécie" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text37" Left="484.95" Top="294.95" Width="38.25" Height="7.9" Text="Quantidade" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text38" Left="558.55" Top="294.95" Width="75.05" Height="7.9" Text="Carteira / Nosso Número" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text39" Left="484.95" Top="321.3" Width="61.6" Height="7.9" Text="Valor do documento" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text40" Left="353.1" Top="321.3" Width="39.25" Height="7.9" Text="Vencimento" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text41" Left="362.1" Top="348.65" Width="67.6" Height="7.9" Text="(+) Outros Acréscimos" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text42" Left="484.95" Top="348.65" Width="53.6" Height="7.9" Text="(=) Valor cobrado" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text43" Left="2.45" Top="429.7" Width="34.8" Height="7.9" Text="Instruções" Font="Arial, 4.5pt"/>
-      <LineObject Name="Line36" Top="548.1" Width="718.2" Border.Style="Dash"/>
-      <ShapeObject Name="Shape6" Top="603.25" Width="720.2" Height="293.73" Border.Width="1.5"/>
-      <LineObject Name="Line37" Left="171.1" Top="575.45" Height="28.35" Border.Width="1.5"/>
-      <LineObject Name="Line38" Left="240.55" Top="575.45" Height="28.35" Border.Width="1.5"/>
-      <LineObject Name="Line39" Left="1" Top="631.15" Width="717.75" Border.Width="1.5"/>
-      <LineObject Name="Line40" Left="1" Top="684.4" Width="717.75" Border.Width="1.5"/>
-      <LineObject Name="Line41" Left="1" Top="710.75" Width="717.75" Border.Width="1.5"/>
-      <LineObject Name="Line42" Left="1" Top="737.1" Width="717.75" Border.Width="1.5"/>
-      <LineObject Name="Line43" Left="1" Top="843.05" Width="717.75" Border.Width="1.5"/>
-      <LineObject Name="Line44" Left="483.95" Top="603.8" Height="291.95" Border.Width="1.5"/>
-      <LineObject Name="Line45" Left="483.95" Top="658.5" Width="234.25" Border.Width="1.5"/>
-      <LineObject Name="Line46" Left="483.95" Top="763.45" Width="235.25" Border.Width="1.5"/>
-      <LineObject Name="Line47" Left="483.95" Top="790.8" Width="235.25" Border.Width="1.5"/>
-      <LineObject Name="Line48" Left="483.95" Top="815.7" Width="235.25" Border.Width="1.5"/>
-      <TextObject Name="Text44" Left="666.95" Top="223.8" Width="50.05" Height="6.45" Text="Recibo do pagador" HorzAlign="Center" VertAlign="Center" Font="Arial, 3.75pt"/>
-      <TextObject Name="Text45" Left="656.95" Top="429.25" Width="59.5" Height="6.45" Text="Autenticação mecânica" HorzAlign="Center" VertAlign="Center" Font="Arial, 3.75pt"/>
-      <TextObject Name="Text46" Left="653.6" Top="538.65" Width="62.95" Height="6.45" Text="Corte na linha pontilhada" HorzAlign="Center" VertAlign="Center" Font="Arial, 3.75pt"/>
-      <TextObject Name="Text47" Left="2.45" Top="605.8" Width="62.15" Height="7.9" Text="Local de pagamento" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text48" Left="2.45" Top="633.15" Width="38.8" Height="7.9" Text="Beneficiário" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text49" Left="485.95" Top="605.8" Width="39.25" Height="7.9" Text="Vencimento" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text50" Left="485.95" Top="633.15" Width="95.95" Height="7.9" Text="Agência / Código do Beneficiário" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text51" Left="486.4" Top="660.5" Width="47.25" Height="7.9" Text="Nosso Número" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text52" Left="485.95" Top="686.85" Width="70.6" Height="7.9" Text="(=) Valor do documento" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text53" Left="2.45" Top="686.85" Width="60.15" Height="7.9" Text="Data do documento" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text54" Left="2.45" Top="712.75" Width="44.7" Height="7.9" Text="Uso do banco" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text55" Left="2.45" Top="739.1" Width="154.65" Height="7.9" Text="Instruções (Texto de responsabilidade do beneficiário)" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text56" Left="2.45" Top="845.5" Width="29.8" Height="7.9" Text="Pagador" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text57" Left="485.95" Top="712.75" Width="80.05" Height="7.9" Text="(-) Desconto / Abatimentos" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text58" Left="485.95" Top="739.1" Width="61.15" Height="7.9" Text="(-) Outras deduções" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text59" Left="486.4" Top="765.45" Width="50.15" Height="7.9" Text="(+) Mora / Multa" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text60" Left="486.4" Top="792.8" Width="68.15" Height="7.9" Text="(+) Outros Acréscimos" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text61" Left="486.4" Top="818.15" Width="54.15" Height="7.9" Text="(=) Valor cobrado" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text62" Left="486.4" Top="884.5" Width="35.8" Height="7.9" Text="Cód. baixa" Font="Arial, 4.5pt"/>
-      <LineObject Name="Line2" Left="389.45" Top="684.4" Height="52.7" Border.Width="1.5"/>
-      <LineObject Name="Line49" Left="130.3" Top="684.4" Height="52.25" Border.Width="1.5"/>
-      <LineObject Name="Line50" Left="276.05" Top="684.4" Height="25.9" Border.Width="1.5"/>
-      <LineObject Name="Line51" Left="351.65" Top="684.4" Height="25.9" Border.Width="1.5"/>
-      <LineObject Name="Line52" Left="205.9" Top="710.75" Height="25.9" Border.Width="1.5"/>
-      <LineObject Name="Line53" Left="262.6" Top="710.75" Height="25.9" Border.Width="1.5"/>
-      <TextObject Name="Text63" Left="132.3" Top="686.83" Width="69.15" Height="7.9" Text="Número do documento" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text64" Left="277.5" Top="686.85" Width="42.25" Height="7.9" Text="Espécie doc." Font="Arial, 4.5pt"/>
-      <TextObject Name="Text65" Left="353.1" Top="686.85" Width="23.35" Height="7.9" Text="Aceite" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text66" Left="390.9" Top="686.85" Width="72.15" Height="7.9" Text="Data do processamento" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text67" Left="390.9" Top="712.75" Width="29.35" Height="7.9" Text="(x) Valor" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text68" Left="264.05" Top="712.75" Width="38.8" Height="7.9" Text="Quantidade" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text69" Left="206.9" Top="712.75" Width="28.35" Height="7.9" Text="Espécie" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text70" Left="132.3" Top="712.91" Width="28.35" Height="7.9" Text="Carteira" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text71" Left="10" Top="898.75" Width="57.15" Height="7.9" Text="Pagador / Avalista" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text72" Left="571.4" Top="897.75" Width="74.05" Height="7.9" Text="Autenticação mecânica -" Font="Arial, 4.5pt"/>
-      <TextObject Name="Text73" Left="638.5" Top="897.75" Width="87.05" Height="7.9" Text="Ficha de Compensação" Font="Arial, 5.25pt, style=Bold"/>
-      <TextObject Name="Text74" Left="2.45" Top="48.25" Width="363.1" Height="14.9" Text="[Boleto.BeneficiarioNome]" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text75" Left="2.45" Top="302.4" Width="327.3" Height="14.9" Text="[Boleto.BeneficiarioNome]" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text76" Left="2.45" Top="642.6" Width="479.5" Height="14.9" Text="[Boleto.BeneficiarioNome]" Font="Arial, 8pt, style=Bold"/>
-      <TextObject Name="Text77" Left="2.45" Top="74.6" Width="363.1" Height="14.9" Text="[Boleto.PagadorNome]" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text78" Left="2.45" Top="100.95" Width="589.9" Height="14.9" Text="[Boleto.LocalPagamento]" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text79" Left="367.45" Top="49.25" Width="111.95" Height="14.9" Text="[Boleto.AgenciaCodigoCedente]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text80" Left="367.55" Top="75.6" Width="111.95" Height="14.9" Text="[Boleto.CarteiraNossoNumero]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text81" Left="482.4" Top="48.25" Width="110.95" Height="14.9" Text="[Boleto.Vencimento]" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text82" Left="481.95" Top="74.6" Width="111.95" Height="14.9" Text="[Boleto.Especie]" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text83" Left="595.35" Top="49.25" Width="121.95" Height="14.9" Text="[Boleto.NumeroDocumento]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <PictureObject Name="Picture4" Width="158.76" Height="37.8" DataColumn="Boleto.BancoImagem"/>
-      <PictureObject Name="Picture5" Top="254.02" Width="158.76" Height="37.8" DataColumn="Boleto.BancoImagem"/>
-      <PictureObject Name="Picture6" Top="565.11" Width="158.76" Height="37.8" DataColumn="Boleto.BancoImagem"/>
-      <TextObject Name="Text84" Left="595.35" Top="74.6" Width="121.95" Height="14.9" Text="[Boleto.ValorDocumento]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text85" Left="595.35" Top="100.95" Width="121.95" Height="14.9" Text="[Boleto.DataProcessamento]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text86" Left="330.75" Top="303.4" Width="111.95" Height="14.9" Text="[Boleto.AgenciaCodigoCedente]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text87" Left="445.15" Top="303.4" Width="36.35" Height="14.9" Text="[Boleto.Especie]" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text88" Left="485.4" Top="303.4" Width="69.7" Height="14.9" Text="[Boleto.Quantidade]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text89" Left="558.55" Top="303.4" Width="159.2" Height="14.9" Text="[Boleto.CarteiraNossoNumero]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text90" Left="2.65" Top="329.75" Width="219.45" Height="14.9" Text="[Boleto.NumeroDocumento]" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text91" Left="224.8" Top="329.75" Width="125.4" Height="14.9" Text="[Boleto.BeneficiarioCpfCnpj]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text92" Left="353.65" Top="329.75" Width="128.85" Height="14.9" Text="[Boleto.Vencimento]" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text93" Left="484.95" Top="329.75" Width="232.9" Height="14.9" Text="[Boleto.ValorDocumento]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text94" Left="484.95" Top="358.1" Width="232.9" Height="14.9" Text="[Boleto.ValorCobrado]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text95" Left="362.55" Top="357.1" Width="119.5" Height="14.9" Text="[Boleto.OutrosAcrescimos]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text96" Left="243.7" Top="357.1" Width="115.5" Height="13.9" Text="[Boleto.MoraMulta]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text97" Left="122.85" Top="357.1" Width="118.5" Height="13.9" Text="[Boleto.OutrasDeducoes]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text98" Left="3" Top="356.65" Width="116.5" Height="13.9" Text="[Boleto.DescontoAbatimentos]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text99" Left="3" Top="383.45" Width="713.75" Height="14.9" Text="[Boleto.PagadorNome] - CPF/CNPJ: [Boleto.PagadorCpfCnpj]" Font="Arial, 7pt, style=Bold"/>
-      <TextObject Name="Text100" Left="3" Top="398.9" Width="713.75" Height="14.9" Text="[Boleto.PagadorEndereco]" Font="Arial, 7pt, style=Bold"/>
-      <TextObject Name="Text101" Left="3" Top="414.35" Width="713.75" Height="14.9" Text="[Boleto.PagadorBairro] - [Boleto.PagadorCidade] - CEP: [Boleto.PagadorCep]" Font="Arial, 7pt, style=Bold"/>
-      <TextObject Name="Text102" Left="3" Top="440.15" Width="477.5" Height="99.95" Text="[Boleto.Instrucao]" Font="Arial, 7pt, style=Bold"/>
-      <TextObject Name="Text103" Left="172.1" Top="12.45" Width="67.15" Height="24.35" Text="[Boleto.BancoCodigoDigito]" HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
-      <TextObject Name="Text104" Left="3" Top="614.25" Width="479.5" Height="14.9" Text="[Boleto.LocalPagamento]" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text105" Left="3" Top="661.5" Width="479.5" Height="14.9" Text="[Boleto.BeneficiarioEnderecoCompleto]" Font="Arial, 8pt, style=Bold"/>
-      <TextObject Name="Text106" Left="2.55" Top="695.85" Width="125.95" Height="13.9" Text="[Boleto.DataDocumento]" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text107" Left="132.3" Top="695.85" Width="142.85" Height="13.9" Text="[Boleto.NumeroDocumento]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text108" Left="277.5" Top="696.3" Width="72.7" Height="13.9" Text="[Boleto.EspecieDocumento]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text109" Left="353.1" Top="696.85" Width="34.7" Height="12.9" Text="[Boleto.Aceite]" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text110" Left="391.45" Top="694.85" Width="92.6" Height="13.9" Text="[Boleto.DataProcessamento]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text111" Left="132.3" Top="722.2" Width="72.25" Height="13.9" Text="[Boleto.Carteira]" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text112" Left="206.9" Top="722.2" Width="54.35" Height="13.9" Text="[Boleto.Especie]" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text113" Left="264.6" Top="722.2" Width="123.5" Height="13.9" Text="[Boleto.Quantidade]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <PictureObject Name="Picture1" Left="2.45" Top="916.65" Width="415.8" Height="47.25" DataColumn="Boleto.CodigoBarra"/>
-      <TextObject Name="Text114" Left="1" Top="748.55" Width="477.5" Height="90.5" Text="[Boleto.Instrucao]" Font="Arial, 7pt, style=Bold"/>
-      <TextObject Name="Text115" Left="172.1" Top="264.6" Width="67.15" Height="24.35" Text="[Boleto.BancoCodigoDigito]" HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
-      <TextObject Name="Text116" Left="172.1" Top="576.45" Width="66.15" Height="24.35" Text="[Boleto.BancoCodigoDigito]" HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
-      <TextObject Name="Text117" Left="485.4" Top="614.25" Width="231.35" Height="13.9" Text="[Boleto.Vencimento]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text118" Left="485.4" Top="642.6" Width="231.35" Height="13.9" Text="[Boleto.AgenciaCodigoCedente]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text119" Left="485.4" Top="669.95" Width="231.35" Height="13.9" Text="[Boleto.NossoNumero]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text120" Left="485.4" Top="694.85" Width="231.35" Height="13.9" Text="[Boleto.ValorDocumento]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text121" Left="485.4" Top="721.2" Width="231.35" Height="13.9" Text="[Boleto.DescontoAbatimentos]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text122" Left="485.4" Top="747.55" Width="231.35" Height="13.9" Text="[Boleto.Vencimento]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text123" Left="485.4" Top="774.9" Width="231.35" Height="13.9" Text="[Boleto.MoraMulta]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text124" Left="485.4" Top="800.25" Width="231.35" Height="13.9" Text="[Boleto.OutrosAcrescimos]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text125" Left="486.4" Top="827.6" Width="139.85" Height="13.9" Text="[Boleto.ValorCobrado]" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="Text126" Left="5.9" Top="856.95" Width="713.75" Height="9.9" Text="[Boleto.PagadorNome] - CPF/CNPJ: [Boleto.PagadorCpfCnpj]" Font="Arial, 6pt, style=Bold"/>
-      <TextObject Name="Text127" Left="5.9" Top="868.85" Width="713.75" Height="9.9" Text="[Boleto.PagadorEndereco]" Font="Arial, 6pt, style=Bold"/>
-      <TextObject Name="Text128" Left="5.9" Top="880.76" Width="486.95" Height="9.9" Text="[Boleto.PagadorBairro] - [Boleto.PagadorCidade] - CEP: [Boleto.PagadorCep]" Font="Arial, 6pt, style=Bold"/>
+      <TextObject Name="Text1" Left="307.12" Width="103.95" Height="9.45" Text="Instruções de Impressão&#13;" Font="Arial, 6pt, style=Bold"/>
+      <ChildBand Name="GuiaEntrega" Top="38" Width="718.2" Height="18.9">
+        <SubreportObject Name="Subreport1" Width="94.5" Height="18.9" ReportPage="GuiaEntregaPage"/>
+      </ChildBand>
+    </PageHeaderBand>
+    <DataBand Name="CorpoBoleto" Top="60.1" Width="718.2" Height="733.1" DataSource="Boletos">
+      <LineObject Name="Line19" Top="1" Width="718.2" Border.Style="Dash"/>
+      <ShapeObject Name="Shape5" Top="52.15" Width="720.2" Height="136.08" Border.Width="1.5"/>
+      <LineObject Name="Line20" Left="171.1" Top="24.35" Height="28.35" Border.Width="1.5"/>
+      <LineObject Name="Line21" Left="240.55" Top="24.35" Height="28.35" Border.Width="1.5"/>
+      <LineObject Name="Line22" Left="1" Top="79.05" Width="717.75" Border.Width="1.5"/>
+      <LineObject Name="Line23" Top="105.95" Width="718.75" Border.Width="1.5"/>
+      <LineObject Name="Line24" Left="1" Top="132.4" Width="718.3" Border.Width="1.5"/>
+      <LineObject Name="Line25" Left="556.55" Top="52.7" Height="26.46" Border.Width="1.5"/>
+      <LineObject Name="Line26" Left="483.4" Top="52.7" Height="26.46" Border.Width="1.5"/>
+      <LineObject Name="Line27" Left="443.15" Top="52.7" Height="26.46" Border.Width="1.5"/>
+      <LineObject Name="Line28" Left="329.75" Top="52.7" Height="26.46" Border.Width="1.5"/>
+      <LineObject Name="Line29" Left="483.46" Top="79.05" Height="26.46" Border.Width="1.5"/>
+      <LineObject Name="Line30" Left="351.65" Top="79.05" Height="26.46" Border.Width="1.5"/>
+      <LineObject Name="Line31" Left="222.8" Top="79.05" Height="26.46" Border.Width="1.5"/>
+      <LineObject Name="Line32" Left="483.46" Top="106.4" Height="26.46" Border.Width="1.5"/>
+      <LineObject Name="Line33" Left="361.1" Top="106.4" Height="26.46" Border.Width="1.5"/>
+      <LineObject Name="Line34" Left="242.7" Top="106.4" Height="26.46" Border.Width="1.5"/>
+      <LineObject Name="Line35" Left="120.85" Top="106.4" Height="26.46" Border.Width="1.5"/>
+      <TextObject Name="Text28" Left="2.45" Top="54.7" Width="39.25" Height="7.9" Text="Beneficiário" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text29" Left="2.45" Top="81.05" Width="69.6" Height="7.9" Text="Número do documento" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text30" Left="2.45" Top="108.4" Width="79.6" Height="7.9" Text="(-) Desconto / Abatimentos" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text31" Left="2.45" Top="135.75" Width="29.8" Height="7.9" Text="Pagador" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text32" Left="122.85" Top="108.4" Width="61.6" Height="7.9" Text="(-) Outras deduções" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text33" Left="244.7" Top="108.4" Width="69.6" Height="7.9" Text="(+) Mora / Multa" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text34" Left="224.8" Top="81.05" Width="40.25" Height="7.9" Text="CPF / CNPJ" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text35" Left="331.75" Top="54.7" Width="96.5" Height="7.9" Text="Agência / Código do Beneficiário" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text36" Left="445.15" Top="54.7" Width="28.8" Height="7.9" Text="Espécie" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text37" Left="484.95" Top="54.7" Width="38.25" Height="7.9" Text="Quantidade" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text38" Left="558.55" Top="54.7" Width="75.05" Height="7.9" Text="Carteira / Nosso Número" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text39" Left="484.95" Top="81.05" Width="61.6" Height="7.9" Text="Valor do documento" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text40" Left="353.1" Top="81.05" Width="39.25" Height="7.9" Text="Vencimento" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text41" Left="362.1" Top="108.4" Width="67.6" Height="7.9" Text="(+) Outros Acréscimos" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text42" Left="484.95" Top="108.4" Width="53.6" Height="7.9" Text="(=) Valor cobrado" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text43" Left="2.45" Top="189.45" Width="34.8" Height="7.9" Text="Instruções" Font="Arial, 4.5pt"/>
+      <LineObject Name="Line36" Top="326.75" Width="718.2" Border.Style="Dash"/>
+      <ShapeObject Name="Shape6" Top="381.9" Width="720.2" Height="293.73" Border.Width="1.5"/>
+      <LineObject Name="Line37" Left="171.1" Top="354.1" Height="28.35" Border.Width="1.5"/>
+      <LineObject Name="Line38" Left="240.55" Top="354.1" Height="28.35" Border.Width="1.5"/>
+      <LineObject Name="Line39" Left="1" Top="409.8" Width="717.75" Border.Width="1.5"/>
+      <LineObject Name="Line40" Left="1" Top="463.05" Width="717.75" Border.Width="1.5"/>
+      <LineObject Name="Line41" Left="1" Top="489.4" Width="717.75" Border.Width="1.5"/>
+      <LineObject Name="Line42" Left="1" Top="515.75" Width="717.75" Border.Width="1.5"/>
+      <LineObject Name="Line43" Left="1" Top="621.7" Width="717.75" Border.Width="1.5"/>
+      <LineObject Name="Line44" Left="483.95" Top="382.45" Height="291.95" Border.Width="1.5"/>
+      <LineObject Name="Line45" Left="483.95" Top="437.15" Width="234.25" Border.Width="1.5"/>
+      <LineObject Name="Line46" Left="483.95" Top="542.1" Width="235.25" Border.Width="1.5"/>
+      <LineObject Name="Line47" Left="483.95" Top="569.45" Width="235.25" Border.Width="1.5"/>
+      <LineObject Name="Line48" Left="483.95" Top="594.35" Width="235.25" Border.Width="1.5"/>
+      <TextObject Name="Text44" Left="666.95" Top="2.45" Width="50.05" Height="6.45" Text="Recibo do pagador" HorzAlign="Center" VertAlign="Center" Font="Arial, 3.75pt"/>
+      <TextObject Name="Text45" Left="656.95" Top="189" Width="59.5" Height="6.45" Text="Autenticação mecânica" HorzAlign="Center" VertAlign="Center" Font="Arial, 3.75pt"/>
+      <TextObject Name="Text46" Left="653.6" Top="317.3" Width="62.95" Height="6.45" Text="Corte na linha pontilhada" HorzAlign="Center" VertAlign="Center" Font="Arial, 3.75pt"/>
+      <TextObject Name="Text47" Left="2.45" Top="384.45" Width="62.15" Height="7.9" Text="Local de pagamento" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text48" Left="2.45" Top="411.8" Width="38.8" Height="7.9" Text="Beneficiário" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text49" Left="485.95" Top="384.45" Width="39.25" Height="7.9" Text="Vencimento" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text50" Left="485.95" Top="411.8" Width="95.95" Height="7.9" Text="Agência / Código do Beneficiário" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text51" Left="486.4" Top="439.15" Width="47.25" Height="7.9" Text="Nosso Número" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text52" Left="485.95" Top="465.5" Width="70.6" Height="7.9" Text="(=) Valor do documento" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text53" Left="2.45" Top="465.5" Width="60.15" Height="7.9" Text="Data do documento" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text54" Left="2.45" Top="491.4" Width="44.7" Height="7.9" Text="Uso do banco" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text55" Left="2.45" Top="517.75" Width="154.65" Height="7.9" Text="Instruções (Texto de responsabilidade do beneficiário)" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text56" Left="2.45" Top="624.15" Width="29.8" Height="7.9" Text="Pagador" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text57" Left="485.95" Top="491.4" Width="80.05" Height="7.9" Text="(-) Desconto / Abatimentos" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text58" Left="485.95" Top="517.75" Width="61.15" Height="7.9" Text="(-) Outras deduções" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text59" Left="486.4" Top="544.1" Width="50.15" Height="7.9" Text="(+) Mora / Multa" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text60" Left="486.4" Top="571.45" Width="68.15" Height="7.9" Text="(+) Outros Acréscimos" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text61" Left="486.4" Top="596.8" Width="54.15" Height="7.9" Text="(=) Valor cobrado" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text62" Left="486.4" Top="663.15" Width="35.8" Height="7.9" Text="Cód. baixa" Font="Arial, 4.5pt"/>
+      <LineObject Name="Line2" Left="389.45" Top="463.05" Height="52.7" Border.Width="1.5"/>
+      <LineObject Name="Line49" Left="130.3" Top="463.05" Height="52.25" Border.Width="1.5"/>
+      <LineObject Name="Line50" Left="276.05" Top="463.05" Height="25.9" Border.Width="1.5"/>
+      <LineObject Name="Line51" Left="351.65" Top="463.05" Height="25.9" Border.Width="1.5"/>
+      <LineObject Name="Line52" Left="205.9" Top="489.4" Height="25.9" Border.Width="1.5"/>
+      <LineObject Name="Line53" Left="262.6" Top="489.4" Height="25.9" Border.Width="1.5"/>
+      <TextObject Name="Text63" Left="132.3" Top="465.48" Width="69.15" Height="7.9" Text="Número do documento" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text64" Left="277.5" Top="465.5" Width="42.25" Height="7.9" Text="Espécie doc." Font="Arial, 4.5pt"/>
+      <TextObject Name="Text65" Left="353.1" Top="465.5" Width="23.35" Height="7.9" Text="Aceite" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text66" Left="390.9" Top="465.5" Width="72.15" Height="7.9" Text="Data do processamento" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text67" Left="390.9" Top="491.4" Width="29.35" Height="7.9" Text="(x) Valor" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text68" Left="264.05" Top="491.4" Width="38.8" Height="7.9" Text="Quantidade" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text69" Left="206.9" Top="491.4" Width="28.35" Height="7.9" Text="Espécie" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text70" Left="132.3" Top="491.56" Width="28.35" Height="7.9" Text="Carteira" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text71" Left="10" Top="677.4" Width="57.15" Height="7.9" Text="Pagador / Avalista" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text72" Left="571.4" Top="676.4" Width="74.05" Height="7.9" Text="Autenticação mecânica -" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text73" Left="638.5" Top="676.4" Width="87.05" Height="7.9" Text="Ficha de Compensação" Font="Arial, 5.25pt, style=Bold"/>
+      <TextObject Name="Text75" Left="2.45" Top="66.15" Width="327.3" Height="10.9" Text="[Boletos.BeneficiarioNome]" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text76" Left="2.45" Top="421.25" Width="479.5" Height="14.9" Text="[Boletos.BeneficiarioNome]" Font="Arial, 8pt, style=Bold"/>
+      <PictureObject Name="Picture5" Top="12.77" Width="158.76" Height="37.8" DataColumn="Boletos.BancoImagem"/>
+      <PictureObject Name="Picture6" Top="342.76" Width="158.76" Height="37.8" DataColumn="Boletos.BancoImagem"/>
+      <TextObject Name="Text86" Left="330.75" Top="66.15" Width="111.95" Height="10.9" Text="[Boletos.AgenciaCodigoCedente]" HorzAlign="Right" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text87" Left="445.15" Top="66.15" Width="36.35" Height="10.9" Text="[Boletos.Especie]" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text88" Left="485.4" Top="66.15" Width="69.7" Height="10.9" Text="[Boletos.Quantidade]" HorzAlign="Right" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text89" Left="558.55" Top="66.15" Width="159.2" Height="10.9" Text="[Boletos.CarteiraNossoNumero]" HorzAlign="Right" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text90" Left="2.65" Top="93.5" Width="219.45" Height="10.9" Text="[Boletos.NumeroDocumento]" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text91" Left="224.8" Top="93.5" Width="125.4" Height="10.9" Text="[Boletos.BeneficiarioCpfCnpj]" HorzAlign="Right" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text92" Left="353.65" Top="93.5" Width="128.85" Height="10.9" Text="[Boletos.Vencimento]" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text93" Left="484.95" Top="93.5" Width="232.9" Height="10.9" Text="[Boletos.ValorDocumento]" HorzAlign="Right" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text94" Left="484.95" Top="119.85" Width="232.9" Height="10.9" Text="[Boletos.ValorCobrado]" HorzAlign="Right" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text95" Left="362.55" Top="118.85" Width="119.5" Height="10.9" Text="[Boletos.OutrosAcrescimos]" HorzAlign="Right" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text96" Left="243.7" Top="118.85" Width="115.5" Height="9.9" Text="[Boletos.MoraMulta]" HorzAlign="Right" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text97" Left="122.85" Top="118.85" Width="118.5" Height="9.9" Text="[Boletos.OutrasDeducoes]" HorzAlign="Right" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text98" Left="3" Top="118.4" Width="116.5" Height="9.9" Text="[Boletos.DescontoAbatimentos]" HorzAlign="Right" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text99" Left="3" Top="146.2" Width="713.75" Height="10.9" Text="[Boletos.PagadorNome] - CPF/CNPJ: [Boletos.PagadorCpfCnpj]" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text100" Left="3" Top="158.65" Width="713.75" Height="10.9" Text="[Boletos.PagadorEndereco]" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text101" Left="3" Top="171.1" Width="713.75" Height="10.9" Text="[Boletos.PagadorBairro] - [Boletos.PagadorCidade] - CEP: [Boletos.PagadorCep]" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text102" Left="3" Top="199.9" Width="477.5" Height="99.95" Text="[Boletos.Instrucao]" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text104" Left="3" Top="393.9" Width="479.5" Height="13.9" Text="[Boletos.LocalPagamento]" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text105" Left="3" Top="440.15" Width="479.5" Height="14.9" Text="[Boletos.BeneficiarioEnderecoCompleto]" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text106" Left="2.55" Top="474.5" Width="125.95" Height="13.9" Text="[Boletos.DataDocumento]" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text107" Left="132.3" Top="474.5" Width="142.85" Height="13.9" Text="[Boletos.NumeroDocumento]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text108" Left="277.5" Top="474.95" Width="72.7" Height="13.9" Text="[Boletos.EspecieDocumento]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text109" Left="353.1" Top="475.5" Width="34.7" Height="12.9" Text="[Boletos.Aceite]" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text110" Left="391.45" Top="473.5" Width="92.6" Height="13.9" Text="[Boletos.DataProcessamento]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text111" Left="132.3" Top="500.85" Width="72.25" Height="13.9" Text="[Boletos.Carteira]" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text112" Left="206.9" Top="500.85" Width="54.35" Height="13.9" Text="[Boletos.Especie]" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text113" Left="264.6" Top="500.85" Width="123.5" Height="13.9" Text="[Boletos.Quantidade]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <PictureObject Name="Picture1" Left="-35.35" Top="685.85" Width="472.5" Height="47.25" DataColumn="Boletos.CodigoBarra"/>
+      <TextObject Name="Text114" Left="1" Top="527.2" Width="477.5" Height="90.5" Text="[Boletos.Instrucao]" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text115" Left="172.1" Top="25.35" Width="67.15" Height="24.35" Text="[Boletos.BancoCodigoDigito]" HorzAlign="Center" Font="Arial, 14pt, style=Bold"/>
+      <TextObject Name="Text116" Left="172.1" Top="356.1" Width="66.15" Height="24.35" Text="[Boletos.BancoCodigoDigito]" HorzAlign="Center" Font="Arial, 14pt, style=Bold"/>
+      <TextObject Name="Text117" Left="485.4" Top="393.9" Width="231.35" Height="13.9" Text="[Boletos.Vencimento]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text118" Left="485.4" Top="421.25" Width="231.35" Height="13.9" Text="[Boletos.AgenciaCodigoCedente]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text119" Left="485.4" Top="447.6" Width="231.35" Height="13.9" Text="[Boletos.NossoNumero]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text120" Left="485.4" Top="473.5" Width="231.35" Height="13.9" Text="[Boletos.ValorDocumento]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text121" Left="485.4" Top="499.85" Width="231.35" Height="13.9" Text="[Boletos.DescontoAbatimentos]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text122" Left="485.4" Top="526.2" Width="231.35" Height="13.9" Text="[Boletos.OutrasDeducoes]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text123" Left="485.4" Top="553.55" Width="231.35" Height="13.9" Text="[Boletos.MoraMulta]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text124" Left="485.4" Top="578.9" Width="231.35" Height="13.9" Text="[Boletos.OutrosAcrescimos]" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text125" Left="486.4" Top="606.25" Width="139.85" Height="13.9" Text="[Boletos.ValorCobrado]" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text126" Left="5.9" Top="635.6" Width="713.75" Height="9.9" Text="[Boletos.PagadorNome] - CPF/CNPJ: [Boletos.PagadorCpfCnpj]" Font="Arial, 6pt, style=Bold"/>
+      <TextObject Name="Text127" Left="5.9" Top="647.5" Width="713.75" Height="9.9" Text="[Boletos.PagadorEndereco]" Font="Arial, 6pt, style=Bold"/>
+      <TextObject Name="Text128" Left="5.9" Top="659.41" Width="486.95" Height="9.9" Text="[Boletos.PagadorBairro] - [Boletos.PagadorCidade] - CEP: [Boletos.PagadorCep]" Font="Arial, 6pt, style=Bold"/>
+      <TextObject Name="Text129" Left="244.7" Top="31.8" Width="472.5" Height="17.9" Text="[Boletos.LinhaDigitavel]" HorzAlign="Right" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text130" Left="244.7" Top="362.55" Width="472.5" Height="17.9" Text="[Boletos.LinhaDigitavel]" HorzAlign="Right" Font="Arial, 12pt, style=Bold"/>
+    </DataBand>
+  </ReportPage>
+  <ReportPage Name="GuiaEntregaPage" Visible="false" Watermark.Font="Arial, 60pt">
+    <DataBand Name="Data2" Width="718.2" Height="217.35">
+      <TextObject Name="Text27" Left="614.25" Top="39.25" Width="104.4" Height="9.45" Text="Comprovante de entrega" HorzAlign="Center" VertAlign="Center" Font="Arial, 6pt, style=Bold"/>
+      <ShapeObject Name="Shape2" Top="49.15" Width="720.2" Height="105.84" Border.Width="1.5"/>
+      <LineObject Name="Line8" Left="594.35" Top="49.7" Height="26.46" Border.Width="1.5"/>
+      <LineObject Name="Line9" Left="480.85" Top="49.7" Height="26.46" Border.Width="1.5"/>
+      <LineObject Name="Line10" Left="366.55" Top="49.7" Height="26.46" Border.Width="1.5"/>
+      <TextObject Name="Text4" Left="2.45" Top="51.7" Width="39.25" Height="7.9" Text="Beneficiário" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text8" Left="367.55" Top="51.7" Width="86.95" Height="7.9" Text="Agência / Código do Cedente" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text9" Left="481.95" Top="51.7" Width="39.25" Height="7.9" Text="Vencimento" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text12" Left="595.35" Top="51.7" Width="69.05" Height="7.9" Text="Número do documento" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text74" Left="2.45" Top="62.15" Width="363.1" Height="10.9" Text="[Boletos.BeneficiarioNome]" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text79" Left="367.45" Top="63.15" Width="111.95" Height="10.9" Text="[Boletos.AgenciaCodigoCedente]" HorzAlign="Right" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text81" Left="482.4" Top="62.15" Width="110.95" Height="10.9" Text="[Boletos.Vencimento]" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text83" Left="595.35" Top="63.15" Width="121.95" Height="10.9" Text="[Boletos.NumeroDocumento]" HorzAlign="Right" Font="Arial, 7pt, style=Bold"/>
+      <LineObject Name="Line5" Left="1" Top="75.5" Width="717.75" Border.Width="1.5"/>
+      <LineObject Name="Line11" Left="594.35" Top="74.6" Height="26.46" Border.Width="1.5"/>
+      <LineObject Name="Line12" Left="480.85" Top="74.6" Height="26.46" Border.Width="1.5"/>
+      <LineObject Name="Line13" Left="366.55" Top="74.6" Height="26.46" Border.Width="1.5"/>
+      <TextObject Name="Text5" Left="2.45" Top="77.05" Width="29.8" Height="7.9" Text="Pagador" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text10" Left="481.95" Top="77.05" Width="28.8" Height="7.9" Text="Espécie" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text11" Left="368.55" Top="77.05" Width="75.05" Height="7.9" Text="Carteira / Nosso Número" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text13" Left="595.35" Top="77.05" Width="61.6" Height="7.9" Text="Valor do documento" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text77" Left="2.45" Top="88.5" Width="363.1" Height="10.9" Text="[Boletos.PagadorNome]" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text80" Left="367.55" Top="89.5" Width="111.95" Height="10.9" Text="[Boletos.CarteiraNossoNumero]" HorzAlign="Right" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text82" Left="481.95" Top="88.5" Width="111.95" Height="10.9" Text="[Boletos.Especie]" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text84" Left="595.35" Top="88.5" Width="121.95" Height="10.9" Text="[Boletos.ValorDocumento]" HorzAlign="Right" Font="Arial, 7pt, style=Bold"/>
+      <LineObject Name="Line6" Top="101.4" Width="718.75" Border.Width="1.5"/>
+      <LineObject Name="Line14" Left="594.35" Top="101.4" Height="26.46" Border.Width="1.5"/>
+      <TextObject Name="Text6" Left="2.45" Top="103.4" Width="62.6" Height="7.9" Text="Local de pagamento" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text14" Left="595.35" Top="103.4" Width="72.05" Height="7.9" Text="Data do processamento" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text78" Left="2.45" Top="114.85" Width="589.9" Height="10.9" Text="[Boletos.LocalPagamento]" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text85" Left="595.35" Top="114.85" Width="121.95" Height="9.9" Text="[Boletos.DataProcessamento]" HorzAlign="Right" Font="Arial, 7pt, style=Bold"/>
+      <LineObject Name="Line7" Left="1" Top="127.85" Width="718.3" Border.Width="1.5"/>
+      <LineObject Name="Line15" Left="594.45" Top="127.3" Height="26.46" Border.Width="1.5"/>
+      <LineObject Name="Line16" Left="480.95" Top="127.3" Height="26.46" Border.Width="1.5"/>
+      <LineObject Name="Line17" Left="274.05" Top="127.3" Height="26.46" Border.Width="1.5"/>
+      <LineObject Name="Line18" Left="151.2" Top="127.3" Height="26.46" Border.Width="1.5"/>
+      <TextObject Name="Text7" Left="2.45" Top="129.75" Width="75.5" Height="7.9" Text="Recebi(emos) o bloqueio" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text15" Left="151.2" Top="129.75" Width="19.35" Height="7.9" Text="Data" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text16" Left="481.95" Top="129.75" Width="19.35" Height="7.9" Text="Data" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text17" Left="274.05" Top="129.75" Width="35.25" Height="7.9" Text="Assinatura" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text18" Left="595.35" Top="129.75" Width="37.25" Height="7.9" Text="Entregador" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text19" Left="6" Top="155.65" Width="167.55" Height="7.9" Text="Motivo de não entrega (para uso da empresa entregadora)" Font="Arial, 4.5pt"/>
+      <TextObject Name="Text20" Left="78.6" Top="181" Width="68.15" Height="9.9" Text="(  ) Mudou-se" HorzAlign="Center" VertAlign="Center" Font="Arial, 6.5pt, style=Bold"/>
+      <TextObject Name="Text22" Left="189" Top="181" Width="139.75" Height="9.9" Text="(  ) Não existe número indicado" HorzAlign="Center" VertAlign="Center" Font="Arial, 6.5pt, style=Bold"/>
+      <TextObject Name="Text25" Left="362.75" Top="181.45" Width="126.2" Height="9.9" Text="(  ) Outros (anotar no verso)" HorzAlign="Center" VertAlign="Center" Font="Arial, 6.5pt, style=Bold"/>
+      <TextObject Name="Text26" Left="532.2" Top="181" Width="87.95" Height="9.9" Text="(  ) Não procurado" HorzAlign="Center" VertAlign="Center" Font="Arial, 6.5pt, style=Bold"/>
+      <TextObject Name="Text21" Left="78.6" Top="199.9" Width="85.5" Height="9.9" Text="(  ) Desconhecido" HorzAlign="Center" VertAlign="Center" Font="Arial, 6.5pt, style=Bold"/>
+      <TextObject Name="Text23" Left="189.45" Top="199.9" Width="112.3" Height="9.9" Text="(  ) Endereço inexistente" HorzAlign="Center" VertAlign="Center" Font="Arial, 6.5pt, style=Bold"/>
+      <TextObject Name="Text24" Left="363" Top="199.9" Width="68.6" Height="9.9" Text="(  ) Recusado" HorzAlign="Center" VertAlign="Center" Font="Arial, 6.5pt, style=Bold"/>
+      <LineObject Name="Line3" Left="171.1" Top="21.35" Height="28.35" Border.Width="1.5"/>
+      <LineObject Name="Line4" Left="240.55" Top="21.35" Height="28.35" Border.Width="1.5"/>
+      <TextObject Name="Text103" Left="172.1" Top="23.35" Width="67.15" Height="24.35" Text="[Boletos.BancoCodigoDigito]" HorzAlign="Center" Font="Arial, 14pt, style=Bold"/>
+      <PictureObject Name="Picture4" Top="9.9" Width="158.76" Height="37.8" DataColumn="Boletos.BancoImagem"/>
+      <TextObject Name="Text3" Left="647.6" Width="75.6" Height="9.45" Text="Comprovante de entrega" HorzAlign="Center" VertAlign="Center" Font="Arial, 3.75pt, style=Bold"/>
+      <LineObject Name="Line1" Width="718.2" Border.Style="Dash"/>
     </DataBand>
   </ReportPage>
 </Report>
