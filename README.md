@@ -1,5 +1,5 @@
-### Layout de Boleto FastReport
+# Layout de Boleto FastReport
 
-Recomendações:
+#### Recomendações: 
 
 Fazer uso da biblioteca Boleto.Net ou criar sua própria classe para popular o boleto, seguindo o objeto de dados que está no arquivo "Boleto.frx".
